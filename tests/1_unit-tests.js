@@ -84,6 +84,24 @@ suite('Unit Tests', () => {
       });
     });
 
+    // #8
+    test('convertHandler should correctly return an error for an invalid input unit.', () => {
+      const invalidUnits = [
+        'gaal',
+        'La',
+        'aL',
+        'mid',
+        'kmr',
+        'lbes',
+        'kdg'
+      ];
+
+      invalidUnits.forEach(unit => {
+        const result = convertHandler.getUnit(unit);
+        assert.equal(result, 'invalid unit');
+      });
+    });
+
   });
 
 

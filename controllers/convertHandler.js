@@ -11,10 +11,21 @@ function ConvertHandler() {
   };
   
   this.getUnit = function(input) {
-    const matches = input.toString().match(/(gal|L|mi|km|lbs|kg){1}/);
-    const result = matches ? matches[1] : 'invalid unit';
+    const matches = input.toString().match(/([a-zA-Z]+)/);
+    if (!matches) {
+      return 'invalid unit';
+    }
+    const result = matches[1];
+    const validUnits = [
+      'gal',
+      'L',
+      'mi',
+      'km',
+      'lbs',
+      'kg'
+    ];
     
-    return result;
+    return validUnits.includes(result) ? result : 'invalid unit';
   };
   
   this.getReturnUnit = function(initUnit) {
