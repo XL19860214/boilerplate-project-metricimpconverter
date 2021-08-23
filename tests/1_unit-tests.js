@@ -40,5 +40,13 @@ suite('Unit Tests', () => {
 
     assert.equal(result, eval(fractionWithDecimal));
   });
+
+  // #5
+  test('convertHandler should correctly return an error on a double-fraction (i.e. 3/2/3).', () => {
+    const doubleFraction = '3/2/3';
+    const result = convertHandler.getNum(doubleFraction);
+
+    assert.equal(result, 'invalid number');
+  });
   
 });

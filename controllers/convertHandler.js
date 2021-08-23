@@ -1,9 +1,10 @@
 function ConvertHandler() {
   
-  this.getNum = function(input) {
-    let result = input.toString().match(/(\d*[\.\d+]*[\/\d+]*\d*[\.\d+]*)/)[1];
+  this.getNum = function(input = 1) {
+    const matches = input.toString().match(/(^\d*[\.\d+]*[\/]?\d*[\.\d+]*$)/);
+    const result = matches ? eval(matches[1]) : 'invalid number';
     
-    return eval(result);
+    return result;
   };
   
   this.getUnit = function(input) {
