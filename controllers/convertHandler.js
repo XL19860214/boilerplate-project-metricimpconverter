@@ -11,7 +11,8 @@ function ConvertHandler() {
   };
   
   this.getUnit = function(input) {
-    let result;
+    const matches = input.toString().match(/(gal|L|mi|km|lbs|kg){1}/);
+    const result = matches ? matches[1] : 'invalid unit';
     
     return result;
   };

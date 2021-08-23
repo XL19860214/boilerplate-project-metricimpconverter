@@ -9,52 +9,83 @@ suite('Unit Tests', () => {
     
   // });
 
-  // #1
-  test('convertHandler should correctly read a whole number input.', () => {
-    const wholeNumber = 1;
-    const result = convertHandler.getNum(wholeNumber);
+  // =================================================================
+  // 
 
-    assert.equal(result, wholeNumber);
+  suite('ConvertHandler Number Part of Input Tests', () => {
+    // #1
+    test('convertHandler should correctly read a whole number input.', () => {
+      const wholeNumber = 1;
+      const result = convertHandler.getNum(wholeNumber);
+
+      assert.equal(result, wholeNumber);
+    });
+
+    // #2
+    test('convertHandler should correctly read a decimal number input.', () => {
+      const decimalNumber = 1.2;
+      const result = convertHandler.getNum(decimalNumber);
+
+      assert.equal(result, decimalNumber);
+    });
+
+    // #3
+    test('convertHandler should correctly read a fractional input.', () => {
+      const fraction = '1/3';
+      const result = convertHandler.getNum(fraction);
+
+      assert.equal(result, eval(fraction));
+    });
+
+    // #4
+    test('convertHandler should correctly read a fractional input with a decimal.', () => {
+      const fractionWithDecimal = '1.32/2.14';
+      const result = convertHandler.getNum(fractionWithDecimal);
+
+      assert.equal(result, eval(fractionWithDecimal));
+    });
+
+    // #5
+    test('convertHandler should correctly return an error on a double-fraction (i.e. 3/2/3).', () => {
+      const doubleFraction = '3/2/3';
+      const result = convertHandler.getNum(doubleFraction);
+
+      assert.equal(result, 'invalid number');
+    });
+
+    // #6
+    test('convertHandler should correctly default to a numerical input of 1 when no numerical input is provided.', () => {
+      const notANumber = 'kg';
+      const result = convertHandler.getNum(notANumber);
+
+      assert.equal(result, 1);
+    });
   });
 
-  // #2
-  test('convertHandler should correctly read a decimal number input.', () => {
-    const decimalNumber = 1.2;
-    const result = convertHandler.getNum(decimalNumber);
 
-    assert.equal(result, decimalNumber);
+  // =================================================================
+  // 
+
+  suite('ConvertHandler Unit Part of Input Tests', () => {
+    // #7
+    test('convertHandler should correctly read each valid input unit.', () => {
+      const validUnits = [
+        'gal',
+        'L',
+        'mi',
+        'km',
+        'lbs',
+        'kg'
+      ];
+
+      validUnits.forEach(unit => {
+        const result = convertHandler.getUnit(unit);
+        assert.equal(result, unit);
+      });
+    });
+
   });
 
-  // #3
-  test('convertHandler should correctly read a fractional input.', () => {
-    const fraction = '1/3';
-    const result = convertHandler.getNum(fraction);
 
-    assert.equal(result, eval(fraction));
-  });
-
-  // #4
-  test('convertHandler should correctly read a fractional input with a decimal.', () => {
-    const fractionWithDecimal = '1.32/2.14';
-    const result = convertHandler.getNum(fractionWithDecimal);
-
-    assert.equal(result, eval(fractionWithDecimal));
-  });
-
-  // #5
-  test('convertHandler should correctly return an error on a double-fraction (i.e. 3/2/3).', () => {
-    const doubleFraction = '3/2/3';
-    const result = convertHandler.getNum(doubleFraction);
-
-    assert.equal(result, 'invalid number');
-  });
-
-  // #6
-  test('convertHandler should correctly default to a numerical input of 1 when no numerical input is provided.', () => {
-    const notANumber = 'kg';
-    const result = convertHandler.getNum(notANumber);
-
-    assert.equal(result, 1);
-  });
   
 });
