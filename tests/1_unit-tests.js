@@ -25,5 +25,13 @@ suite('Unit Tests', () => {
     assert.equal(result, decimalNumber);
   });
 
+  // #3
+  test('convertHandler should correctly read a fractional input.', () => {
+    const fraction = '1/3';
+    const result = convertHandler.getNum(fraction);
+
+    assert.equal(result, eval(fraction));
+  });
+
   
 });
