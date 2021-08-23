@@ -1,9 +1,29 @@
 const chai = require('chai');
-let assert = chai.assert;
+const assert = chai.assert;
 const ConvertHandler = require('../controllers/convertHandler.js');
 
-let convertHandler = new ConvertHandler();
+const convertHandler = new ConvertHandler();
 
-suite('Unit Tests', function(){
+suite('Unit Tests', () => {
+  // setup(() => {
+    
+  // });
 
+  // #1
+  test('convertHandler should correctly read a whole number input.', () => {
+    const wholeNumber = 1;
+    const result = convertHandler.getNum(wholeNumber);
+
+    assert.equal(result, wholeNumber);
+  });
+
+  // #2
+  test('convertHandler should correctly read a decimal number input.', () => {
+    const decimalNumber = 1.2;
+    const result = convertHandler.getNum(decimalNumber);
+
+    assert.equal(result, decimalNumber);
+  });
+
+  
 });
