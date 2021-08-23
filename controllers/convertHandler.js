@@ -1,6 +1,9 @@
 function ConvertHandler() {
   
   this.getNum = function(input = 1) {
+    if (!/\d+/.test(input.toString())) {
+      return 1;
+    }
     const matches = input.toString().match(/(^\d*[\.\d+]*[\/]?\d*[\.\d+]*$)/);
     const result = matches ? eval(matches[1]) : 'invalid number';
     

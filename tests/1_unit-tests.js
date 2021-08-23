@@ -48,5 +48,13 @@ suite('Unit Tests', () => {
 
     assert.equal(result, 'invalid number');
   });
+
+  // #6
+  test('convertHandler should correctly default to a numerical input of 1 when no numerical input is provided.', () => {
+    const notANumber = 'kg';
+    const result = convertHandler.getNum(notANumber);
+
+    assert.equal(result, 1);
+  });
   
 });
