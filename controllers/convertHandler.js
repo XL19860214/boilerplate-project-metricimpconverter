@@ -1,7 +1,7 @@
 function ConvertHandler() {
   
   this.getNum = function(input) {
-    let result = input.toString().match(/(\d*[\.\d+]*[\/\d+]*)/)[1];
+    let result = input.toString().match(/(\d*[\.\d+]*[\/\d+]*\d*[\.\d+]*)/)[1];
     
     return eval(result);
   };
