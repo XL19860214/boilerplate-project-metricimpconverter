@@ -108,19 +108,19 @@ function ConvertHandler() {
         result = initNum * galToL;
         break;
       case 'L':
-        result = initNum / galToL;
+        result = initNum * (1 / galToL);
         break;
       case 'lbs':
         result = initNum * lbsToKg;
         break;
       case 'kg':
-        result = initNum / lbsToKg;
+        result = initNum * (1 / lbsToKg);
         break;
       case 'mi':
         result = initNum * miToKm;
         break;
       case 'km':
-        result = initNum / miToKm;
+        result = initNum * (1 / miToKm);
         break;
     }
     

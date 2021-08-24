@@ -186,20 +186,104 @@ suite('Unit Tests', () => {
     // #11
     test('convertHandler should correctly convert gal to L.', () => {
       const galToL = 3.78541;
+      const convert = galToL;
       const unit = 'gal';
       const testObject = [
-        { initNum: 1, expected: 1 * galToL },
-        { initNum: 1.2, expected: 1.2 * galToL },
-        { initNum: 3 / 4, expected: 3 / 4 * galToL },
-        { initNum: 3.2 / 4.1, expected: 3.2 / 4.1 * galToL }
+        { initNum: 1, expected: 1 * convert },
+        { initNum: 1.2, expected: 1.2 * convert },
+        { initNum: 3 / 4, expected: 3 / 4 * convert },
+        { initNum: 3.2 / 4.1, expected: 3.2 / 4.1 * convert }
       ];
       for (const {initNum, expected} of testObject) {
         const result = convertHandler.convert(initNum, unit);
-        assert.strictEqual(result, expected);
+        assert.strictEqual(result, expected, `initNum: ${initNum}`);
       }
     });
 
+    // #12
+    test('convertHandler should correctly convert L to gal.', () => {
+      const galToL = 3.78541;
+      const convert = 1 / galToL;
+      const unit = 'L';
+      const testObject = [
+        { initNum: 1, expected: 1 * convert },
+        { initNum: 1.2, expected: 1.2 * convert },
+        { initNum: 3 / 4, expected: 3 / 4 * convert },
+        { initNum: 3.2 / 4.1, expected: 3.2 / 4.1 * convert }
+      ];
+      for (const {initNum, expected} of testObject) {
+        const result = convertHandler.convert(initNum, unit);
+        assert.strictEqual(result, expected, `initNum: ${initNum}`);
+      }
+    });
 
+    // #13
+    test('convertHandler should correctly convert mi to km.', () => {
+      const miToKm = 1.60934;
+      const convert = miToKm;
+      const unit = 'mi';
+      const testObject = [
+        { initNum: 1, expected: 1 * convert },
+        { initNum: 1.2, expected: 1.2 * convert },
+        { initNum: 3 / 4, expected: 3 / 4 * convert },
+        { initNum: 3.2 / 4.1, expected: 3.2 / 4.1 * convert }
+      ];
+      for (const {initNum, expected} of testObject) {
+        const result = convertHandler.convert(initNum, unit);
+        assert.strictEqual(result, expected, `initNum: ${initNum}`);
+      }
+    });
+
+    // #14
+    test('convertHandler should correctly convert km to mi.', () => {
+      const miToKm = 1.60934;
+      const convert = 1 / miToKm;
+      const unit = 'km';
+      const testObject = [
+        { initNum: 1, expected: 1 * convert },
+        { initNum: 1.2, expected: 1.2 * convert },
+        { initNum: 3 / 4, expected: 3 / 4 * convert },
+        { initNum: 3.2 / 4.1, expected: 3.2 / 4.1 * convert }
+      ];
+      for (const {initNum, expected} of testObject) {
+        const result = convertHandler.convert(initNum, unit);
+        assert.strictEqual(result, expected, `initNum: ${initNum}`);
+      }
+    });
+
+    // #15
+    test('convertHandler should correctly convert lbs to kg.', () => {
+      const lbsToKg = 0.453592;
+      const convert = lbsToKg;
+      const unit = 'lbs';
+      const testObject = [
+        { initNum: 1, expected: 1 * convert },
+        { initNum: 1.2, expected: 1.2 * convert },
+        { initNum: 3 / 4, expected: 3 / 4 * convert },
+        { initNum: 3.2 / 4.1, expected: 3.2 / 4.1 * convert }
+      ];
+      for (const {initNum, expected} of testObject) {
+        const result = convertHandler.convert(initNum, unit);
+        assert.strictEqual(result, expected, `initNum: ${initNum}`);
+      }
+    });
+
+    // #16
+    test('convertHandler should correctly convert kg to lbs.', () => {
+      const lbsToKg = 0.453592;
+      const convert = 1 / lbsToKg;
+      const unit = 'kg';
+      const testObject = [
+        { initNum: 1, expected: 1 * convert },
+        { initNum: 1.2, expected: 1.2 * convert },
+        { initNum: 3 / 4, expected: 3 / 4 * convert },
+        { initNum: 3.2 / 4.1, expected: 3.2 / 4.1 * convert }
+      ];
+      for (const {initNum, expected} of testObject) {
+        const result = convertHandler.convert(initNum, unit);
+        assert.strictEqual(result, expected, `initNum: ${initNum}`);
+      }
+    });
 
   });
 
