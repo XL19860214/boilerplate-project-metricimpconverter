@@ -2,7 +2,7 @@ function ConvertHandler() {
 
   this.validUnits = [
     'gal',
-    'L',
+    'l',
     'mi',
     'km',
     'lbs',
@@ -24,8 +24,8 @@ function ConvertHandler() {
     km: 'mi',
     'invalid unit': 'invalid unit',
     L: 'gal',
-    lbs: 'Kg',
-    mi: 'Km'
+    lbs: 'kg',
+    mi: 'km'
   };
 
   this.validateInput = input => {
@@ -50,7 +50,9 @@ function ConvertHandler() {
     }
 
     if (!/\d+/.test(input)) {
-      return 1;
+      return 1; // Default
+    } else if (this.getIndex(input) === -1) {
+      return input;
     }
     const num = input.substring(0, this.getIndex(input));
     const validNumber = /^\d+(\.\d+)?(\/\d+(\.\d+)?)?$/;
@@ -71,10 +73,13 @@ function ConvertHandler() {
     } catch (error) {
       return result;
     }
-    
+
     const unit = input.substring(this.getIndex(input));
-    if (this.validUnits.includes(unit)) {
-      result = unit;
+    if (this.validUnits.includes(unit.toLowerCase())) {
+      result = unit.toLowerCase();
+    }
+    if (result === 'l') {
+      result = 'L';
     }
     
     return result;
@@ -123,6 +128,8 @@ function ConvertHandler() {
         result = initNum * (1 / miToKm);
         break;
     }
+
+    result = parseFloat(result.toFixed(5));
     
     return result;
   };

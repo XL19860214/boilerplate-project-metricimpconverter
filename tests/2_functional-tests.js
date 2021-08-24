@@ -125,9 +125,9 @@ suite('Functional Tests', function() {
         expected: {
           initNum: 1,
           initUnit: "kg",
-          returnNum: 1 / 0.453592,
+          returnNum: parseFloat((1 / 0.453592).toFixed(5)),
           returnUnit: "lbs",
-          string: `1 kilograms converts to ${1 / 0.453592} pounds`
+          string: `1 kilograms converts to ${parseFloat((1 / 0.453592).toFixed(5))} pounds`
         }
       }
     ];

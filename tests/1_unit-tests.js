@@ -170,8 +170,8 @@ suite('Unit Tests', () => {
           'kg': 'lbs',
           'km': 'mi',
           'L': 'gal',
-          'lbs': 'Kg',
-          'mi': 'Km',
+          'lbs': 'kg',
+          'mi': 'km',
           'mii': 'invalid unit'
         };
 
@@ -224,7 +224,7 @@ suite('Unit Tests', () => {
       ];
       for (const {initNum, expected} of testObjects) {
         const result = convertHandler.convert(initNum, unit);
-        assert.strictEqual(result, expected, `initNum: ${initNum}`);
+        assert.strictEqual(result, parseFloat(expected.toFixed(5)), `initNum: ${initNum}`);
       }
 
       done();
@@ -243,7 +243,7 @@ suite('Unit Tests', () => {
       ];
       for (const {initNum, expected} of testObjects) {
         const result = convertHandler.convert(initNum, unit);
-        assert.strictEqual(result, expected, `initNum: ${initNum}`);
+        assert.strictEqual(result, parseFloat(expected.toFixed(5)), `initNum: ${initNum}`);
       }
 
       done();
@@ -262,7 +262,7 @@ suite('Unit Tests', () => {
       ];
       for (const {initNum, expected} of testObjects) {
         const result = convertHandler.convert(initNum, unit);
-        assert.strictEqual(result, expected, `initNum: ${initNum}`);
+        assert.strictEqual(result, parseFloat(expected.toFixed(5)), `initNum: ${initNum}`);
       }
 
       done();
@@ -281,7 +281,7 @@ suite('Unit Tests', () => {
       ];
       for (const {initNum, expected} of testObjects) {
         const result = convertHandler.convert(initNum, unit);
-        assert.strictEqual(result, expected, `initNum: ${initNum}`);
+        assert.strictEqual(result, parseFloat(expected.toFixed(5)), `initNum: ${initNum}`);
       }
 
       done();
@@ -300,7 +300,7 @@ suite('Unit Tests', () => {
       ];
       for (const {initNum, expected} of testObjects) {
         const result = convertHandler.convert(initNum, unit);
-        assert.strictEqual(result, expected, `initNum: ${initNum}`);
+        assert.strictEqual(result, parseFloat(expected.toFixed(5)), `initNum: ${initNum}`);
       }
 
       done();
@@ -319,7 +319,7 @@ suite('Unit Tests', () => {
       ];
       for (const {initNum, expected} of testObjects) {
         const result = convertHandler.convert(initNum, unit);
-        assert.strictEqual(result, expected, `initNum: ${initNum}`);
+        assert.strictEqual(result, parseFloat(expected.toFixed(5)), `initNum: ${initNum}`);
       }
 
       done();
