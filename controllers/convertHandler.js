@@ -27,13 +27,31 @@ function ConvertHandler() {
     lbs: 'Kg',
     mi: 'Km'
   };
+
+  this.validateInput = input => {
+    if (typeof input !== 'string') {
+      throw new TypeError('Parameter input only accept string argument.')
+    }
+  }
+
+  this.getIndex = input => {
+    this.validateInput(input);
+
+    return input.search(/[a-zA-Z]/);
+  }
   
-  this.getNum = function(input = 1) {
-    if (!/\d+/.test(input.toString())) {
+  this.getNum = function(input) {
+    this.validateInput(input);
+
+    if (!/\d+/.test(input)) {
       return 1;
     }
-    const matches = input.toString().match(/(^\d*[\.\d+]*[\/]?\d*[\.\d+]*$)/);
-    const result = matches ? eval(matches[1]) : 'invalid number';
+    const num = input.substring(0, this.getIndex(input));
+    let result = 'invalid number';
+    const validNumber = /^\d+(\.\d+)?(\/\d+(\.\d+)?)?$/;
+    if (!isNaN(num) && validNumber.test(num)) {
+      result = eval(num);
+    }
     
     return result;
   };
@@ -55,8 +73,20 @@ function ConvertHandler() {
     return result;
   };
 
-  this.spellOutUnit = function(unit) {
+  // this.spellOutUnit = function(unit) {
+  this.spellOutUnit = function(unit, input) {
+    const num = this.getNum(input);
     let result;
+    if (this.spellOutUnits[unit]) {
+      if (num === 1 || num === -1) {
+        result = this.spellOutUnits[unit];
+      } else {
+        result = this.spellOutUnits[unit] + 's';
+      }
+    } else {
+      result = 'invalid unit';
+    }
+    result = this.spellOutUnits[unit] ? this.spellOutUnits[unit] : 'invalid unit';
     
     return result;
   };

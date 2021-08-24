@@ -15,10 +15,18 @@ suite('Unit Tests', () => {
   suite('ConvertHandler Number Part of Input Tests', () => {
     // #1
     test('convertHandler should correctly read a whole number input.', () => {
-      const wholeNumber = 1;
-      const result = convertHandler.getNum(wholeNumber);
+      const wholeNumbers = {
+        '1kg': 1,
+        '3kg': 3,
+        '5kg': 5,
+        '7kg': 7,
+        '9kg': 9
+      };
 
-      assert.equal(result, wholeNumber);
+      for ([input, wholeNumber] of Object.entries(wholeNumbers)) {
+        const result = convertHandler.getNum(input);
+        assert.equal(result, wholeNumber, `Test input: ${wholeNumber}, actual result: ${result}.`);
+      }
     });
 
     // #2
@@ -116,6 +124,39 @@ suite('Unit Tests', () => {
         for ([initUnit, returnUnit] of Object.entries(convertUnits)) {
           assert.equal(convertHandler.getReturnUnit(initUnit), returnUnit);
         }
+    });
+
+    // #10
+    test('convertHandler should correctly return the spelled-out string unit for each valid input unit.', () => {
+      const spellOutUnits = {
+        gal: 'gallon',
+        kg: 'kilogram',
+        km: 'kilometer',
+        L: 'liter',
+        lbs: 'pound',
+        mi: 'mile'
+      };
+
+      for ([unit, spellOutUnit] of Object.entries(spellOutUnits)) {
+        assert.equal(convertHandler.spellOutUnit(unit), spellOutUnit);
+      }
+
+      const validInputs = [
+        '1gal',
+        '1.3kg',
+        '4L',
+        '6mi'
+      ];
+
+      validInputs.forEach(input => {
+        const unit = convertHandler.getUnit(input);
+        const num = convertHandler.getNum(input);
+        if (num == 1 || num == -1) {
+          assert.equal(convertHandler.spellOutUnit(unit, input), spellOutUnits[unit]);
+        } else {
+          assert.equal(convertHandler.spellOutUnit(unit, input), spellOutUnits[unit] + 's');
+        }
+      });
     });
 
   });
