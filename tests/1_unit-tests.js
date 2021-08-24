@@ -158,8 +158,8 @@ suite('Unit Tests', () => {
           'mii': 'invalid unit'
         };
 
-      for (const [input, expected] of Object.entries(testObject)) {
-        const result = convertHandler.getReturnUnit(input);
+      for (const [unit, expected] of Object.entries(testObject)) {
+        const result = convertHandler.getReturnUnit(unit);
         assert.strictEqual(result, expected);
       }
     });
@@ -182,6 +182,24 @@ suite('Unit Tests', () => {
         assert.strictEqual(result, expected);
       }
     });
+
+    // #11
+    test('convertHandler should correctly convert gal to L.', () => {
+      const galToL = 3.78541;
+      const unit = 'gal';
+      const testObject = [
+        { initNum: 1, expected: 1 * galToL },
+        { initNum: 1.2, expected: 1.2 * galToL },
+        { initNum: 3 / 4, expected: 3 / 4 * galToL },
+        { initNum: 3.2 / 4.1, expected: 3.2 / 4.1 * galToL }
+      ];
+      for (const {initNum, expected} of testObject) {
+        const result = convertHandler.convert(initNum, unit);
+        assert.strictEqual(result, expected);
+      }
+    });
+
+
 
   });
 
