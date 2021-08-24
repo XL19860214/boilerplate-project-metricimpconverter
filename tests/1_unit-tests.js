@@ -102,6 +102,22 @@ suite('Unit Tests', () => {
       });
     });
 
+    // #9
+    test('convertHandler should return the correct return unit for each valid input unit.', () => {
+        const convertUnits = {
+          gal: 'L',
+          kg: 'lbs',
+          km: 'mi',
+          L: 'gal',
+          lbs: 'Kg',
+          mi: 'Km'
+        };
+
+        for ([initUnit, returnUnit] of Object.entries(convertUnits)) {
+          assert.equal(convertHandler.getReturnUnit(initUnit), returnUnit);
+        }
+    });
+
   });
 
 
