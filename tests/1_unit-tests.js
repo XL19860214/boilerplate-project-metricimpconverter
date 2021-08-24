@@ -23,18 +23,26 @@ suite('Unit Tests', () => {
         '9kg': 9
       };
 
-      for ([input, wholeNumber] of Object.entries(wholeNumbers)) {
+      for (const [input, wholeNumber] of Object.entries(wholeNumbers)) {
         const result = convertHandler.getNum(input);
-        assert.equal(result, wholeNumber, `Test input: ${wholeNumber}, actual result: ${result}.`);
+        assert.equal(result, wholeNumber);
       }
     });
 
     // #2
     test('convertHandler should correctly read a decimal number input.', () => {
-      const decimalNumber = 1.2;
-      const result = convertHandler.getNum(decimalNumber);
+      const decimalNumbers = {
+        '1.1kg': 1.1,
+        '3.2kg': 3.2,
+        '5.3kg': 5.3,
+        '7.4kg': 7.4,
+        '9.5kg': 9.5
+      };
 
-      assert.equal(result, decimalNumber);
+      for (const [input, decimalNumber] of Object.entries(decimalNumbers)) {
+        const result = convertHandler.getNum(input);
+        assert.equal(result, decimalNumber);
+      }
     });
 
     // #3
