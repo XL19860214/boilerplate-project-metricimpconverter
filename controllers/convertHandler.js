@@ -10,12 +10,12 @@ function ConvertHandler() {
   ];
 
   this.spellOutUnits = {
-    gal: 'gallon',
-    kg: 'kilogram',
-    km: 'kilometer',
-    L: 'liter',
-    lbs: 'pound',
-    mi: 'mile'
+    gal: 'gallons',
+    kg: 'kilograms',
+    km: 'kilometers',
+    L: 'liters',
+    lbs: 'pounds',
+    mi: 'miles'
   };
 
   this.convertUnits = {
@@ -41,29 +41,43 @@ function ConvertHandler() {
   }
   
   this.getNum = function(input) {
-    this.validateInput(input);
+    let result = 'invalid number';
+
+    try {
+      this.validateInput(input);
+    } catch (error) {
+      return result;
+    }
 
     if (!/\d+/.test(input)) {
       return 1;
     }
     const num = input.substring(0, this.getIndex(input));
-    let result = 'invalid number';
     const validNumber = /^\d+(\.\d+)?(\/\d+(\.\d+)?)?$/;
-    if (!isNaN(num) && validNumber.test(num)) {
+    // isNaN(1/3), isNaN('1/3')
+    if (validNumber.test(num)) {
       result = eval(num);
     }
+    // console.log(`num:result`, `${num}:${result}`); // DEBUG
     
     return result;
   };
   
   this.getUnit = function(input) {
-    const matches = input.toString().match(/([a-zA-Z]+)/);
-    if (!matches) {
-      return 'invalid unit';
+    let result = 'invalid unit';
+
+    try {
+      this.validateInput(input);
+    } catch (error) {
+      return result;
     }
-    const result = matches[1];
     
-    return this.validUnits.includes(result) ? result : 'invalid unit';
+    const unit = input.substring(this.getIndex(input));
+    if (this.validUnits.includes(unit)) {
+      result = unit;
+    }
+    
+    return result;
   };
   
   this.getReturnUnit = function(initUnit) {
@@ -73,20 +87,12 @@ function ConvertHandler() {
     return result;
   };
 
-  // this.spellOutUnit = function(unit) {
-  this.spellOutUnit = function(unit, input) {
-    const num = this.getNum(input);
-    let result;
+  this.spellOutUnit = function(unit) {
+    let result = 'invalid unit';
+
     if (this.spellOutUnits[unit]) {
-      if (num === 1 || num === -1) {
-        result = this.spellOutUnits[unit];
-      } else {
-        result = this.spellOutUnits[unit] + 's';
-      }
-    } else {
-      result = 'invalid unit';
+      result = this.spellOutUnits[unit];
     }
-    result = this.spellOutUnits[unit] ? this.spellOutUnits[unit] : 'invalid unit';
     
     return result;
   };
